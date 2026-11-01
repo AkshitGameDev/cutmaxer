@@ -1,0 +1,100 @@
+
+# ==========================================
+# CutMaxer - Unity Git Ignore
+# ==========================================
+
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Unity generated files
+*.csproj
+*.sln
+*.slnx
+*.unityproj
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity crash reports
+sysinfo.txt
+
+# Unity Asset Store tools
+[Aa]ssets/AssetStoreTools*
+
+# Unity packages
+*.unitypackage
+Assets/KumaBeer/HQ PBR Combat Knives pack/Textures/
+# ==========================================
+# Visual Studio / VS Code / Rider
+# ==========================================
+
+.vs/
+.vscode/
+.idea/
+*.DotSettings.user
+
+# ==========================================
+# Build Outputs
+# ==========================================
+
+*.apk
+*.aab
+*.unityweb
+*.exe
+
+# ==========================================
+# Addressables
+# ==========================================
+
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# ==========================================
+# Operating System
+# ==========================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.nfs*
+
+# ==========================================
+# Temporary Files
+# ==========================================
+
+*.bak
+*.tmp
+*.temp
+*.swp
+*.swo
+*.orig
+*.log
+
+# ==========================================
+# IMPORTANT
+# Do NOT ignore Unity .meta files!
+# They preserve asset references and GUIDs.
+# ==========================================

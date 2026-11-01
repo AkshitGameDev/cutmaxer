@@ -1,0 +1,11 @@
+
+{
+  "levelId": 1,
+  "levelName": "Level 1",
+  "segments": [
+    "H0104",
+    "V0103",
+    "A0105",
+    "B0102"
+  ]
+}
