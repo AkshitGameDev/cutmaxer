@@ -1,11 +1,64 @@
-
 {
-  "levelId": 1,
-  "levelName": "Level 1",
-  "segments": [
-    "H0104",
-    "V0103",
-    "A0105",
-    "B0102"
+  "levels": [
+    {
+      "levelId": 1,
+      "levelName": "Level 1",
+      "segments": [
+        "H0104",
+        "V0103",
+        "A0105",
+        "B0102"
+      ]
+    },
+    {
+      "levelId": 2,
+      "levelName": "Level 2",
+      "segments": [
+        "V0105",
+        "H0103",
+        "B0104",
+        "A0102",
+        "H0106"
+      ]
+    },
+    {
+      "levelId": 3,
+      "levelName": "Level 3",
+      "segments": [
+        "A0104",
+        "B0105",
+        "H0106",
+        "V0103",
+        "A0104",
+        "B0105"
+      ]
+    },
+    {
+      "levelId": 4,
+      "levelName": "Level 4",
+      "segments": [
+        "H0105",
+        "V0104",
+        "A0106",
+        "B0103",
+        "H0107",
+        "V0105",
+        "A0104"
+      ]
+    },
+    {
+      "levelId": 5,
+      "levelName": "Level 5",
+      "segments": [
+        "B0106",
+        "A0107",
+        "V0105",
+        "H0108",
+        "B0104",
+        "A0106",
+        "V0107",
+        "H0105"
+      ]
+    }
   ]
 }

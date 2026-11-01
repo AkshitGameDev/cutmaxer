@@ -20,11 +20,20 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject[] splashScreen;
 
+    private LevelData[] levelData;
+
     void Awake()
     {
         instance = this;
         Application.targetFrameRate = 60;
     }
+
+    public void GetData(LevelData[] data)
+    {
+        levelData = data;
+    }
+
+    
 
     void Start()
     {
@@ -87,9 +96,8 @@ public class GameManager : MonoBehaviour
 
     public void FinishSplashScreen()
     {
-        ChangeState(GameState.MainMenu);
         animator.SetBool("playSplash", false);
-
+        ChangeState(GameState.MainMenu);
     }
 
 }
