@@ -76,38 +76,29 @@ public class EntityScript : MonoBehaviour
         }
     }
 
-    void DestroyEntity()
-    {
-        if (isVanishing) return;
+   void DestroyEntity()
+{
+    if (isVanishing) return;
 
-        isVanishing = true;
+    isVanishing = true;
 
-        // Disable parent trigger collider
-        entityCollider.enabled = false;
+    // Disable parent trigger collider
+    entityCollider.enabled = false;
 
-        // Activate physics on both halves
-        cubeL.isKinematic = false;
-        cubeR.isKinematic = false;
+    // Activate physics on both halves
+    cubeL.isKinematic = false;
+    cubeR.isKinematic = false;
 
-        cubeL.useGravity = true;
-        cubeR.useGravity = true;
+    cubeL.useGravity = true;
+    cubeR.useGravity = true;
 
-        // Push left half to the left
-        cubeL.AddForce(-transform.right * splitForce,
-            ForceMode.Impulse
-        );
+    // Push halves in opposite directions
+    cubeL.AddForce(Vector3.left * splitForce, ForceMode.Impulse);
+    cubeR.AddForce(Vector3.right * splitForce, ForceMode.Impulse);
 
-        // Push right half to the right
-        cubeR.AddForce(
-            transform.right * splitForce,
-            ForceMode.Impulse
-        );
-
-        
-
-        // Start fading both halves
-        StartCoroutine(FadeCoroutine());
-    }
+    // Start fading both halves
+    StartCoroutine(FadeCoroutine());
+}
 
     IEnumerator FadeCoroutine()
     {

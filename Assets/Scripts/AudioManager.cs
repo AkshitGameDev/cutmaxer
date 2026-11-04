@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
     public AudioClip bgm;
     public AudioClip knifeThrow;
     public AudioClip knifeHit;

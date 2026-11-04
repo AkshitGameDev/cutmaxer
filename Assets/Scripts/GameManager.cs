@@ -20,11 +20,53 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject[] splashScreen;
 
+    private LevelData[] levelData;
+
     void Awake()
     {
         instance = this;
         Application.targetFrameRate = 60;
     }
+
+    public void GetData(LevelData[] data)
+    {
+        Debug.Log($"Received {data.Length} levels from DataManager.", this);
+        levelData = data;
+        processLevelData();
+    }
+
+
+    void processLevelData()
+    {
+        int curLevel = 1;
+
+        string[] segments = levelData[curLevel - 1].segments;
+
+        // Create arrays based on number of segments
+        string[] direction = new string[segments.Length];
+        int[] obstacleType = new int[segments.Length];
+        int[] count = new int[segments.Length];
+
+        for (int i = 0; i < segments.Length; i++)
+        {
+            string segment = segments[i];
+
+            // Extract data from 5-character string
+            direction[i] = segment.Substring(0, 1);
+            obstacleType[i] = int.Parse(segment.Substring(1, 2));
+            count[i] = int.Parse(segment.Substring(3, 2));
+
+            Debug.Log(
+                $"Segment {i + 1}: Direction = {direction[i]}, " +
+                $"Obstacle Type = {obstacleType[i]}, Count = {count[i]}"
+            );
+        }
+
+        
+
+    }
+
+    
 
     void Start()
     {
@@ -87,9 +129,8 @@ public class GameManager : MonoBehaviour
 
     public void FinishSplashScreen()
     {
-        ChangeState(GameState.MainMenu);
         animator.SetBool("playSplash", false);
-
+        ChangeState(GameState.MainMenu);
     }
 
 }
