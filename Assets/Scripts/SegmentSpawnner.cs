@@ -19,11 +19,11 @@ public class SegmentSpawnner : MonoBehaviour
     {
        if(direction == "horizontal")
         {
-            
+            plane.transform.localScale = new Vector3(obsCount, 1, 1);
         }
         else if(direction == "vertical")
         {
-            
+            plane.transform.localScale = new Vector3(1, 1, obsCount);
         }
 
     }

@@ -894,7 +894,7 @@ MonoBehaviour:
   obstacle: {fileID: 803363782885552719, guid: 684e59856e8d17b4e9fecd375d650ce4, type: 3}
   plane: {fileID: 847792562}
   ObstacleSpawnparent: {fileID: 204853803}
-  direction: horizontal
+  direction: vertical
   obsCount: 3
 --- !u!1 &2125736884
 GameObject:
