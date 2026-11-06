@@ -10,16 +10,32 @@ public class SegmentSpawnner : MonoBehaviour
 
     [Header("Segment Settings")]
     public string direction = "horizontal";
+
     public int obsCount = 3;
 
     [Header("Spacing Settings")]
     [SerializeField] private float spacing = 10f;
+    float angle = 0f;
 
-    void Start()
+    
+    
+
+
+    protected void getsetData(string _direction, int _obsCount, GameObject _obstacle, float _angle = 0f)
+    {
+        this.direction = _direction;
+        this.obsCount = _obsCount;
+        this.obstacle = _obstacle;
+        this.angle = _angle;
+    }
+
+
+    void StartProcess()
     {
         if (direction == "horizontal")
         {
             plane.transform.localScale = new Vector3(obsCount, 1, 1);
+            plane.transform.localRotation = Quaternion.Euler(angle, -90, -90);
 
             SpawnObstacles(Vector3.right);
         }
