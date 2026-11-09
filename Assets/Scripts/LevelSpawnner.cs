@@ -6,7 +6,7 @@ public class LevelSpawnner : MonoBehaviour
     [Header("Spawn References")]
     [SerializeField] private GameObject[] obstacles;
     [SerializeField] private GameObject segmentPrefab;
-    Vector3 nextSpawnPoint = new Vector3(0, 0, 0);
+    Vector3 nextSpawnPoint = new Vector3(50f, 9f, 2.5f);
     float spacing = 10f;
 
     string[] tDirPS = new string[10];

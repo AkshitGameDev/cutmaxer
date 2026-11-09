@@ -38,13 +38,14 @@ public class SegmentSpawnner : MonoBehaviour
         if (direction == "horizontal")
         {
             plane.transform.localScale = new Vector3(obsCount, 1, 1);
-            plane.transform.localRotation = Quaternion.Euler(0, 0, angle);
+            plane.transform.localRotation = Quaternion.Euler(90, angle, 0);
 
             SpawnObstacles(Vector3.right);
         }
         else if (direction == "vertical")
         {
             plane.transform.localScale = new Vector3(1, 1, obsCount);
+            plane.transform.localRotation = Quaternion.Euler(90, 0, 0);
 
             SpawnObstacles(Vector3.forward);
         }
