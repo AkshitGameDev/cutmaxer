@@ -8,25 +8,46 @@ public class SegmentSpawnner : MonoBehaviour
     [SerializeField] private GameObject plane;
     [SerializeField] private Transform ObstacleSpawnparent;
 
+
+
     [Header("Segment Settings")]
     public string direction = "horizontal";
+
     public int obsCount = 3;
 
     [Header("Spacing Settings")]
     [SerializeField] private float spacing = 10f;
+    float angle = 0f;
 
-    void Start()
+    
+    
+
+
+    public void getsetData(string _direction, int _obsCount, GameObject _obstacle, float _angle = 0f)
+    {
+        this.direction = _direction;
+        this.obsCount = _obsCount;
+        this.obstacle = _obstacle;
+        this.angle = _angle;
+        StartProcess();
+    }
+
+
+    void StartProcess()
     {
         if (direction == "horizontal")
         {
             plane.transform.localScale = new Vector3(obsCount, 1, 1);
+            plane.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+            transform.eulerAngles = new Vector3(0, 0, angle);
 
             SpawnObstacles(Vector3.right);
         }
         else if (direction == "vertical")
         {
-            ObstacleSpawnparent.localRotation = Quaternion.Euler(-90, 0, 0);
             plane.transform.localScale = new Vector3(1, 1, obsCount);
+            plane.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+            ObstacleSpawnparent.transform.localRotation = Quaternion.Euler(-90, 0, 0);
 
             SpawnObstacles(Vector3.forward);
         }

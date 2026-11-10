@@ -2,83 +2,131 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
 public class KnifeScript : MonoBehaviour
 {
     [Header("Launch Settings")]
-    public float moveX = 1f;
-    public float moveY = 1.5f;
-    public float launchDuration = 0.5f;
+    [SerializeField] private float horizontalSpeed = 1.5f;
+    [SerializeField] private float verticalSpeed = 3f;
+
+    [Header("Gravity Settings")]
+    [SerializeField] private float gravityMultiplier = 1.5f;
+
+    [Header("Rotation Settings")]
+    [SerializeField] private float rotationSpeed = 720f;
 
     private Transform knifeChild;
+    private Rigidbody rb;
 
-    private bool isLaunching = false;
-    private float timer = 0f;
+    private bool isRotating = false;
+    private bool launchRequested = false;
 
-    private Vector3 startPosition;
-    private Vector3 targetPosition;
-    private Quaternion startRotation;
+    private float rotatedAngle = 0f;
 
-    void Start()
+    void Awake()
     {
-        // Get first child of the parent
+        rb = GetComponent<Rigidbody>();
+
         if (transform.childCount > 0)
         {
             knifeChild = transform.GetChild(0);
         }
         else
         {
-            Debug.LogError("No child found!");
+            Debug.LogError("No knife child found!");
         }
+
+        // Rigidbody settings
+        rb.isKinematic = false;
+        rb.useGravity = true;
+
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+        rb.collisionDetectionMode =
+            CollisionDetectionMode.Continuous;
+
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     void Update()
     {
+        if (knifeChild == null)
+            return;
+
+        // Launch on Space
         if (Keyboard.current != null &&
-            Keyboard.current.spaceKey.wasPressedThisFrame &&
-            !isLaunching &&
-            knifeChild != null)
+            Keyboard.current.spaceKey.wasPressedThisFrame)
         {
+            launchRequested = true;
+        }
+
+        // Rotate only during a flip
+        if (isRotating)
+        {
+            UpdateRotation();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        // Handle launch
+        if (launchRequested)
+        {
+            launchRequested = false;
             Launch();
         }
 
-        if (isLaunching)
+        // Apply extra gravity
+        if (!rb.isKinematic)
         {
-            timer += Time.deltaTime;
-
-            float progress = Mathf.Clamp01(
-                timer / launchDuration
+            rb.AddForce(
+                Physics.gravity * (gravityMultiplier - 1f),
+                ForceMode.Acceleration
             );
-
-            // Move the PARENT object
-            transform.position = Vector3.Lerp(
-                startPosition,
-                targetPosition,
-                progress
-            );
-
-            // Rotate only the FIRST CHILD
-            knifeChild.localRotation = startRotation *
-                Quaternion.Euler(0f, 0f, -360f * progress);
-
-            if (progress >= 1f)
-            {
-                isLaunching = false;
-            }
         }
     }
 
     void Launch()
     {
-        isLaunching = true;
-        timer = 0f;
+        // Reset velocity to prevent accumulating speed
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
-        // Parent movement
-        startPosition = transform.position;
+        // Launch forward and upward
+        rb.linearVelocity = new Vector3(
+            horizontalSpeed,
+            verticalSpeed,
+            0f
+        );
 
-        targetPosition = startPosition +
-            new Vector3(moveX, moveY, 0f);
+        // Start rotation from current orientation
+        isRotating = true;
+        rotatedAngle = 0f;
+    }
 
-        // Child rotation
-        startRotation = knifeChild.localRotation;
+    void UpdateRotation()
+    {
+        float remainingAngle = 360f - rotatedAngle;
+
+        float rotationStep = Mathf.Min(
+            rotationSpeed * Time.deltaTime,
+            remainingAngle
+        );
+
+        // Rotate knife around local Z axis
+        knifeChild.Rotate(
+            0f,
+            0f,
+            -rotationStep,
+            Space.Self
+        );
+
+        rotatedAngle += rotationStep;
+
+        // Stop after one complete rotation
+        if (rotatedAngle >= 360f)
+        {
+            isRotating = false;
+        }
     }
 }

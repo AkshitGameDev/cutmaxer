@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private LevelSpawnner levelSpawnner;
 
     [SerializeField] private GameObject[] splashScreen;
 
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     void processLevelData()
     {
-        int curLevel = 1;
+        int curLevel = 4;
 
         string[] segments = levelData[curLevel - 1].segments;
 
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
         }
 
         
-
+        levelSpawnner.DataProccessing(direction, obstacleType, count);
     }
 
     

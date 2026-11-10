@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ObsticleSpawnner : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject[] ObstacleList;
+    public GameObject[] segmentList;
     void Start()
     {
         
