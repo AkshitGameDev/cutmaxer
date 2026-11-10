@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     void processLevelData()
     {
-        int curLevel = 1;
+        int curLevel = 4;
 
         string[] segments = levelData[curLevel - 1].segments;
 

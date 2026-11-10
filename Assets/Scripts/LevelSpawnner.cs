@@ -6,7 +6,7 @@ public class LevelSpawnner : MonoBehaviour
     [Header("Spawn References")]
     [SerializeField] private GameObject[] obstacles;
     [SerializeField] private GameObject segmentPrefab;
-    Vector3 nextSpawnPoint = new Vector3(50f, 9f, 2.5f);
+    Vector3 nextSpawnPoint = new Vector3(80f, 9f, 2.5f);
     float spacing = 10f;
 
     string[] tDirPS = new string[10];
@@ -55,8 +55,8 @@ public class LevelSpawnner : MonoBehaviour
         object segment = Instantiate(segmentPrefab, nextSpawnPoint, Quaternion.identity);
         SegmentSpawnner segmentSpawnner = ((GameObject)segment).GetComponent<SegmentSpawnner>();
         segmentSpawnner.getsetData(dir, obsCount, GetObstacle(obsIndex), angle);
-        spacing += spacing + obsCount/2;
-        nextSpawnPoint = new Vector3(nextSpawnPoint.x + spacing, obsCount/2 + 4, nextSpawnPoint.z );
+        spacing = obsCount * 3.5f + 10f;
+        nextSpawnPoint = new Vector3(nextSpawnPoint.x + spacing, obsCount/2 + 10, nextSpawnPoint.z );
 
     }
 
