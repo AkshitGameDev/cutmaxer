@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public enum GameState
 {
     SplashScreen,
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.MainMenu:
-
+                    SplashScreen();
                 break;
             case GameState.Playing:
                 // Handle gameplay logic
@@ -132,6 +132,18 @@ public class GameManager : MonoBehaviour
     {
         animator.SetBool("playSplash", false);
         ChangeState(GameState.MainMenu);
+        SceneManager.LoadScene(1);
+        MainMenu();
+    }
+
+    public void MainMenu()
+    {
+        
+    }
+
+    public void StartGame()
+    {
+        ChangeState(GameState.Playing);
     }
 
 }

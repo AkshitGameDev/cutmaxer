@@ -7,7 +7,8 @@ public class PricistanceInitilisor : MonoBehaviour
     {
         if (GameManager.instance == null)
         {
-            DontDestroyOnLoad(gameManager);
+            var _gameManager = Instantiate(gameManager);
+            DontDestroyOnLoad(_gameManager);
         }   
     }
 }
