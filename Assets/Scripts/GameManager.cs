@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Received {data.Length} levels from DataManager.", this);
         levelData = data;
-        processLevelData();
+        // processLevelData();
     }
 
 
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
                     SplashScreen();
                 break;
             case GameState.Playing:
-                // Handle gameplay logic
+
                 break;
             case GameState.Paused:
                 // Handle paused logic
@@ -138,12 +138,21 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        
+        juggleScreens((int)GameState.MainMenu);
+        Debug.Log("Main Menu");
+    }
+
+    public void PPlayButtonPressed()
+    {
+        StartGame();
     }
 
     public void StartGame()
     {
         ChangeState(GameState.Playing);
+        SceneManager.LoadScene(2);
+        Debug.Log("Game Started");
+        processLevelData();
     }
 
 }
