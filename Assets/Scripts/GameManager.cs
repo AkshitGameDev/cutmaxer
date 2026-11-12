@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = newState;
         Debug.Log($"Game state changed to: {currentState}");
+        stateController();
         juggleScreens((int)currentState);
 
     }
@@ -124,12 +125,14 @@ public class GameManager : MonoBehaviour
 
     void SplashScreen()
     {
+        Debug.Log("Splash Screen");
         animator.SetBool("playSplash", true);
     }
 
 
     public void FinishSplashScreen()
     {
+        Debug.Log("Splash Screen Finished");
         animator.SetBool("playSplash", false);
         ChangeState(GameState.MainMenu);
         SceneManager.LoadScene(1);
@@ -142,7 +145,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Main Menu");
     }
 
-    public void PPlayButtonPressed()
+    public void PlayButtonPressed()
     {
         StartGame();
     }
