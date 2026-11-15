@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System;
 
@@ -16,9 +17,13 @@ public class DataManager : MonoBehaviour
         }
 
         LevelDataCollection collection =
-            JsonUtility.FromJson<LevelDataCollection>(levelDataJson.text);
+            JsonUtility.FromJson<LevelDataCollection>(
+                levelDataJson.text
+            );
 
-        if (collection == null || collection.levels == null)
+        if (collection == null ||
+            collection.levels == null ||
+            collection.levels.Length == 0)
         {
             Debug.LogError("Failed to load level data.", this);
             return;
@@ -27,14 +32,6 @@ public class DataManager : MonoBehaviour
         levelData = collection.levels;
 
         Debug.Log($"Loaded {levelData.Length} levels.", this);
-    }
-
-    void Start()
-    {
-        if (levelData == null || levelData.Length == 0)
-            return;
-
-        GameManager.instance.GetData(levelData);
     }
 }
 
