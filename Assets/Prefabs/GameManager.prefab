@@ -1210,6 +1210,7 @@ MonoBehaviour:
   - {fileID: 2465550708368155856}
   - {fileID: 4348727682845240434}
   - {fileID: 2782798656451502905}
+  currentLevel: 3
 --- !u!114 &2497808894658444420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,7 +1264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSpawnner
   obstacles:
-  - {fileID: 803363782885552719, guid: 684e59856e8d17b4e9fecd375d650ce4, type: 3}
+  - {fileID: 2622010155636093167, guid: c7c4764734978464f909a6eeea4ce77b, type: 3}
   segmentPrefab: {fileID: 155987877008843755, guid: 009c2f6005361d44296f980c5a3de901, type: 3}
 --- !u!1 &6628874614302541284
 GameObject:
