@@ -92,6 +92,9 @@ public class EntityScript : MonoBehaviour
     cubeL.useGravity = true;
     cubeR.useGravity = true;
 
+    cubeL.freezeRotation = false;
+    cubeR.freezeRotation = false;
+
     // Push halves in opposite directions
     cubeL.AddForce(Vector3.left * splitForce, ForceMode.Impulse);
     cubeR.AddForce(Vector3.right * splitForce, ForceMode.Impulse);
