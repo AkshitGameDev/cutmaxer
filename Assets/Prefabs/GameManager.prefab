@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSpawnner
   obstacles:
-  - {fileID: 2622010155636093167, guid: c7c4764734978464f909a6eeea4ce77b, type: 3}
+  - {fileID: 6829025592174981136, guid: 82a5b23ad993f5546a3ffb8f21c2999a, type: 3}
   segmentPrefab: {fileID: 155987877008843755, guid: 009c2f6005361d44296f980c5a3de901, type: 3}
 --- !u!1 &6628874614302541284
 GameObject:
