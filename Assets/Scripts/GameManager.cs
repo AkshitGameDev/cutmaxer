@@ -65,6 +65,53 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    void DebugUI()
+{
+    var eventSystem = UnityEngine.EventSystems.EventSystem.current;
+
+    if (eventSystem == null)
+    {
+        Debug.LogError("No active EventSystem!");
+        return;
+    }
+
+    Debug.Log("EventSystem: " + eventSystem.gameObject.name);
+    Debug.Log("Input Module: " + eventSystem.currentInputModule);
+    Debug.Log("Cursor State: " + Cursor.lockState);
+
+    var mouse = UnityEngine.InputSystem.Mouse.current;
+
+    if (mouse == null)
+    {
+        Debug.LogError("Mouse not detected!");
+        return;
+    }
+
+    var pointer = new UnityEngine.EventSystems.PointerEventData(eventSystem);
+    pointer.position = mouse.position.ReadValue();
+
+    var results = new System.Collections.Generic.List<
+        UnityEngine.EventSystems.RaycastResult>();
+
+    eventSystem.RaycastAll(pointer, results);
+
+    Debug.Log("Objects detected: " + results.Count);
+
+    foreach (var result in results)
+    {
+        Debug.Log("Hit: " + result.gameObject.name);
+    }
+}
+
+
+void Update()
+{
+    if (UnityEngine.InputSystem.Mouse.current != null &&
+        UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame)
+    {
+        DebugUI();
+    }
+}
     void Start()
     {
         // DataManager.Awake() has already loaded the JSON
